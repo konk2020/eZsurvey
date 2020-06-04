@@ -27,7 +27,7 @@ if (isset($_POST["reset-request-submit"])) {
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
 
-    $url = "http://localhost:8888/konk/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
+    $url = "http://localhost:8888/eZsurvey/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
 
     $expires = date("U") + 1800;
 
@@ -50,8 +50,8 @@ if (isset($_POST["reset-request-submit"])) {
 
     // prep email and send it
     $to = $userEmail;
-    $subject = "Reset your password for Konk The Game";
-    $message = '<p> We received a password reset request for username: <strong>'. $userID .'</strong>. The link to reset your password is below: <p><br>';
+    $subject = "Reset your password for eZSurvey";
+    $message = '<p> We received a password reset request for username: <strong>'. $userID .'</strong>. Click link below to reset your password: <p><br>';
     $message .= '<a href="' . $url . '">' . $url. '</a></p>';
 
     // send the emmail code
@@ -63,6 +63,6 @@ if (isset($_POST["reset-request-submit"])) {
 
 } else {
 
-header("Location: ../index.php");
+header("Location: ../login.php");
 
 }

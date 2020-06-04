@@ -12,6 +12,9 @@
     <td colspan="2" style = "text-align:center;">Reset your password</td>   
 </tr>
 
+<tr>
+    <td colspan="2" style = "text-align:center; color:red;">
+
 <?php
 $selector = $_GET["selector"];
 $validator = $_GET["validator"];
@@ -22,12 +25,13 @@ if (empty ($selector) || empty($validator)){
    // selector or validator is empty
    // have the user try again
       
-    echo "Could not validate your request!";
+    echo "Could not validate your request";
 
 } else {
     if (ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false ) {
         ?>
-
+    </td> 
+    </tr>
         <form method="POST" name="form1" action="includes/reset-password.inc.php" onsubmit=" return comparepwd()"> 
         <tr>
         <td colspan="2" style = "text-align:center;">  
@@ -57,7 +61,7 @@ if (empty ($selector) || empty($validator)){
     
 
         </form>
-        <script src="custom-functions.js"></script>
+        <script src="scripts/custom-functions.js"></script>
 
         <?php
 

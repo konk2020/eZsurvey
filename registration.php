@@ -24,7 +24,7 @@ if (strpos($url, $protocol_var) !== false and strpos($url, $host_var) !== false)
 
 } else {
   
-  $secure_url = 'https://konk.us/verify.php';
+  $secure_url = 'https://ezsurvey.jvrtechllc.com/verify.php';
     
   }
 
@@ -74,6 +74,8 @@ if (isset($_POST['submit'])){
         //check to see if the username exists 
 
         $insert = $mysqli->query("SELECT * FROM accounts WHERE username = '$u'");
+        $insert1 = $mysqli->query("SELECT * FROM accounts WHERE email = '$e'");
+        
         if ($insert->num_rows > 0) {
 
 
@@ -81,6 +83,13 @@ if (isset($_POST['submit'])){
                 //send an error to the user
                 header("Location: registration.php?username=exists");
                 
+        } elseif ($insert1->num_rows > 0){
+
+                // email exists 
+                //send an error to the user
+                header("Location: registration.php?email=exists");
+
+
         } else {
 
                  // is a new username
@@ -155,7 +164,7 @@ if (isset($_POST['submit'])){
 if (isset($_GET["username"])) {
     if ($_GET["username"]== "exists") {
         echo '<p class="signupsuccess">That username already exists</p>';
-        echo "<a href='login.php'>Login Page</a>";
+       // echo "<a href='login.php'>Login Page</a>";
         
     }
 } elseif (!empty($error)) {
@@ -163,9 +172,14 @@ if (isset($_GET["username"])) {
 
 } elseif (isset($_GET["email"])) {
 
+    if ($_GET["email"]== "exists") {
+        echo '<p class="signupsuccess">Email provided already tied to another account</p>';
+       // echo "<a href='login.php'>Login Page</a>";
+        
+    } else {   
     // email
      echo '<p class="signupsuccess"> Success! We sent an email to: '. $_GET["email"] .' so you can validate your email.</p>';
-
+    }
 }
 ?>
 

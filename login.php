@@ -62,6 +62,20 @@ if (isset($_POST['submit'])){
 <table border="0" align="center" cellpadding="5">
 
 <tr>
+<td colspan="2" style = "text-align:center; color:red;">
+<?php
+if (isset($_GET["newpwd"])) {
+    if ($_GET["newpwd"]== "passwordupdated") {
+        echo '<p class="signupsuccess">Your password has been reset!</p>';
+        
+    }
+
+}
+?>
+</td>
+</tr>
+
+<tr>
     <td align="right">Username:</td>
     <td><input type="TEXT" name="u" required/></td>
 </tr>
@@ -85,16 +99,6 @@ if (isset($_POST['submit'])){
   </td>
 </tr>
 
-
-<?php
-if (isset($_GET["newpwd"])) {
-    if ($_GET["newpwd"]== "passwordupdated") {
-        echo '<p class="signupsuccess">Your password has been reset!</p>';
-        
-    }
-
-}
-?>
 <tr>
 <td colspan="2" style = "text-align:center;">
 <a href='reset-password.php'>Forgot your password?</a> <a href='registration.php'>Register</a>
@@ -103,12 +107,6 @@ if (isset($_GET["newpwd"])) {
 
 <?php include 'footer.php'; ?>
 
-
 </div>
-
-
-
-
-
 </body>
 </html>

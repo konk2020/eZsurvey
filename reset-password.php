@@ -38,29 +38,18 @@ if (isset($_GET["email"])) {
         
     }
 }
-?>
-</td>
-</tr>
-
-
-
-</form>
-<?php include 'footer.php'; ?>
-
-
-<?php
 if (isset($_GET["reset"])) {
     if ($_GET["reset"]== "success") {
         echo '<p class="signupsuccess">Check your e-mail</p>';
         
     }
-
-}
+}    
 ?>
-
+</td>
+</tr>
+</form>
+</table>
+<?php include 'footer.php'; ?>
 </div>
-
-
-
 </body>
 </html>

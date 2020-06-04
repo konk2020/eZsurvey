@@ -1,11 +1,12 @@
 <?php
 $error = NULL;
+ini_set('display_errors', 1);
 session_start();
 if (isset($_POST['submit'])){
     // Connect to the database
 
-    $mysqli = NEW MySQLi('localhost','root','root', 'eZsurvey');
-
+//    $mysqli = NEW MySQLi('localhost','root','root', 'eZsurvey');
+$mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtechl_ezsurvey');
     // Get form data
     $u = $mysqli->real_escape_string($_POST['u']);
     $p = $mysqli->real_escape_string($_POST['p']);
@@ -29,7 +30,7 @@ if (isset($_POST['submit'])){
             //echo "Your account has been verified and you have been loged in";
             $_SESSION['userLogin'] = "Loggedin";
             header("Location: adminpage.php");
-            exit();
+           // exit();
         } else {
 
             $error = "The account has not yet been verified. An email was send to $email on $date";

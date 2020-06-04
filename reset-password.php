@@ -21,7 +21,6 @@
 
 <tr>
 <td colspan="2" style = "text-align:center; font:20px Aria;">
-<p>An e-mail will be sent to you with instructions on how to reset your password.<p>
 </td>     
 </tr>
 

@@ -3,8 +3,9 @@ if (isset($_GET['vkey'])){
     // Process Verification
     $vkey = $_GET['vkey'];
 
-    $mysqli = NEW MySQLi('localhost','root','root', 'eZsurvey');
-
+  //  $mysqli = NEW MySQLi('localhost','root','root', 'eZsurvey');
+    $mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtechl_ezsurvey');
+    
     $resultSet = $mysqli->query("SELECT verified, vkey FROM accounts WHERE verified = 0 AND vkey = '$vkey'");
 
     if ($resultSet->num_rows == 1) {

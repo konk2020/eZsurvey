@@ -1,4 +1,6 @@
 <?php
+// un-comment to display PHP errors
+     ini_set('display_errors', 1);
 $error = NULL;
 
      //ini_set('display_errors', 1);
@@ -24,7 +26,7 @@ if (strpos($url, $protocol_var) !== false and strpos($url, $host_var) !== false)
 
 } else {
   
-  $secure_url = 'https://ezsurvey.jvrtechllc.com/verify.php';
+  $secure_url = 'https://jvrtechllc.com/ezsurvey/verify.php';
     
   }
 
@@ -55,7 +57,7 @@ if (isset($_POST['submit'])){
         // Connect to the database
         if ($protocol=='https://') {
             // prod server use the proper DB
-            $mysqli = NEW MySQLi ('localhost','jvrtechl_konkadmin','mk74sps49', 'jvrtechl_konkusers');
+            $mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtechl_ezsurvey');
         } else {
         $mysqli = NEW MySQLi ('localhost','root','root', 'eZsurvey');
         }

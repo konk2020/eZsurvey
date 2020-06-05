@@ -1,10 +1,10 @@
 <?php
 // Author: Richard A. Negron
 // Date: June 4, 2020
-// Purpose: Notified used with URL to  reset their password
+// Purpose: Notified user with URL to reset their password
 // File: reset-request.inc.php
 // Other files called: reset-password.php, login.php
-// includes: db_connection.php, header.php, footer.php, mail.php
+// includes: db_connection.php, app_connection.php, header.php, footer.php, mail.php
 
 ini_set('display_errors', 1);
 

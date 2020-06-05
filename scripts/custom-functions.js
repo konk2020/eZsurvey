@@ -1,3 +1,10 @@
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: comparefunction 
+// File: custom-function.js
+// Other files called: none
+// includes: none
+
 function comparepwd()
 {
 var empt = document.forms["form1"]["pwd"].value;

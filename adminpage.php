@@ -1,4 +1,11 @@
 <?php
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Admin page which provides the user option of what they can do 
+// File: adminpage.php
+// Other files called: login.php
+// includes: header.php, footer.php
+
 session_start();
 if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     header("Location: login.php");

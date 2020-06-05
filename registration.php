@@ -1,4 +1,13 @@
 <?php
+
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Register user 
+// File: registration.php
+// Other files called: verify.php
+// includes: mail.php, header.php, footer.php
+
+
 // un-comment to display PHP errors
      ini_set('display_errors', 1);
 $error = NULL;
@@ -7,29 +16,9 @@ $error = NULL;
 
 require_once "mail.php";
 
-// use the correct URL based on protoco
-
-$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-//echo $url; // Outputs: Full URL
-
-if ($protocol=='https://') {
-    $protocol_var = 'https://';
-} else {
-    $protocol_var = 'http://';
-}
-$host_var = 'localhost';
-
-if (strpos($url, $protocol_var) !== false and strpos($url, $host_var) !== false) {
-  // verify.php is used for the email being send to the user
-  $secure_url = 'http://localhost:8888/eZsurvey/verify.php';
-
-} else {
   
-  $secure_url = 'https://jvrtechllc.com/ezsurvey/verify.php';
+  $secure_url = app_url().'verify.php';
     
-  }
-
 
 if (isset($_POST['submit'])){
 
@@ -54,13 +43,8 @@ if (isset($_POST['submit'])){
     } else {
         // Form is valid
 
-        // Connect to the database
-        if ($protocol=='https://') {
-            // prod server use the proper DB
-            $mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtechl_ezsurvey');
-        } else {
-        $mysqli = NEW MySQLi ('localhost','root','root', 'eZsurvey');
-        }
+            // open connection to db
+            $mysqli = OpenCon();
 
         // Sanitize from data
         $u = $mysqli->real_escape_string($u);

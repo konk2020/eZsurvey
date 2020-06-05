@@ -1,3 +1,12 @@
+<?php
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Create new password for the user
+// File: reset-new-password.php
+// Other files called: reset-password.inc.php
+// includes: header.php, footer.php
+?>
+
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" />

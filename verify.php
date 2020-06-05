@@ -1,10 +1,18 @@
 <?php
+
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Reset password for user 
+// File: verify.php
+// Other files called: login.php
+// includes: db_connection.php
+
 if (isset($_GET['vkey'])){
     // Process Verification
     $vkey = $_GET['vkey'];
 
-  //  $mysqli = NEW MySQLi('localhost','root','root', 'eZsurvey');
-    $mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtechl_ezsurvey');
+    // open DB connection
+    $mysqli = OpenCon();
     
     $resultSet = $mysqli->query("SELECT verified, vkey FROM accounts WHERE verified = 0 AND vkey = '$vkey'");
 

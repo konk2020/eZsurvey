@@ -1,9 +1,17 @@
 <?php
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Notified used with URL to  reset their password
+// File: reset-request.inc.php
+// Other files called: reset-password.php, login.php
+// includes: db_connection.php, header.php, footer.php, mail.php
 
 ini_set('display_errors', 1);
 
 require_once "../mail.php";
-require_once 'konkusersdb_connection.php';
+require_once '../db_connection.php';
+require_once '../app_connection.php';
+
 
 if (isset($_POST["reset-request-submit"])) {
 
@@ -27,7 +35,8 @@ if (isset($_POST["reset-request-submit"])) {
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
 
-    $url = "http://localhost:8888/eZsurvey/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
+   // $url = app_url()"http://localhost:8888/eZsurvey/create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
+    $url = app_url()."create-new-password.php?selector=".$selector."&validator=".bin2hex($token);
 
     $expires = date("U") + 1800;
 

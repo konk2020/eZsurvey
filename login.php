@@ -1,12 +1,22 @@
 <?php
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Login, Reset-Pwd, allow user to Register 
+// File: login.php
+// Other files called: adminpage.php, reset-password.php, registration.php
+// includes: header.php, footer.php, db_connection.php
+
+include 'db_connection.php';
+
 $error = NULL;
 ini_set('display_errors', 1);
 session_start();
-if (isset($_POST['submit'])){
-    // Connect to the database
 
-//    $mysqli = NEW MySQLi('localhost','root','root', 'eZsurvey');
-$mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtechl_ezsurvey');
+if (isset($_POST['submit'])){
+    // Connect to the database 
+  
+        $mysqli = OpenCon();
+  
     // Get form data
     $u = $mysqli->real_escape_string($_POST['u']);
     $p = $mysqli->real_escape_string($_POST['p']);
@@ -36,8 +46,6 @@ $mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtech
             $error = "The account has not yet been verified. An email was send to $email on $date";
         }
 
-
-
     } else {
         // Invalid Credentials
         $error = "The username or password you entered is incorrect";
@@ -50,7 +58,6 @@ $mysqli = NEW MySQLi ('localhost','jvrtechl_ezsurveyadmin','mk74sps49', 'jvrtech
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-
 
 </head>
 

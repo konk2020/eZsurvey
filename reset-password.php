@@ -1,3 +1,12 @@
+<?php
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Reset password for user 
+// File: reset-password.php
+// Other files called: reset-request.inc.php
+// includes: header.php, footer.php
+?>
+
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" />

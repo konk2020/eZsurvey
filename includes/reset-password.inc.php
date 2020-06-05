@@ -1,4 +1,10 @@
 <?php
+// Author: Richard A. Negron
+// Date: June 4, 2020
+// Purpose: Resets password for user in database
+// File: reset-password.inc.php
+// Other files called: reset-password.php, login.php
+// includes: db_connection.php
 
 if (isset($_POST["reset-password-submit"])) {
 
@@ -18,7 +24,7 @@ if (empty ($password) || empty($passwordRepeat)){
 
 $currentDate = date("U");
 
-require "konkusersdb_connection.php";
+require "../db_connection.php";
 $conn = OpenCon();
 
 

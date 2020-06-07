@@ -5,6 +5,16 @@ include 'db_connection.php';
 //ini_set('display_errors', 1);
 
 
+function console_log($output, $with_script_tags = true) {
+   // used to write to the browser console
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
+
+
 function check_reshuffle() {
     // -- returns 1 when all the cards on the deck has been drawn (52 if them)
     $conn = OpenCon();
@@ -28,6 +38,7 @@ function check_reshuffle() {
         }
     
 //CloseCon($conn);       
+}
 }
 
 //count the number of cards for a player 
@@ -79,3 +90,4 @@ function did_game_start() {
           
 }        
 //-- used for baby pic
+?>

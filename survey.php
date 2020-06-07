@@ -10,7 +10,15 @@
 session_start();
 //ini_set('display_errors', 1);
 
-require_once 'db_connection.php';
+
+
+//require_once 'db_connection.php';
+require_once 'global_functions.php';
+
+
+console_log("Session var STATE: ".$_SESSION['state']);
+console_log("Session var Q_ID: ".$_SESSION['q_id']);
+console_log("Q_ID: ".$_POST['question_id']);
 
 ?>
 
@@ -35,7 +43,7 @@ require_once 'db_connection.php';
     
 
     if (!isset($state)) { 
-        // state is not set, so ask the user
+        // state is not set, and user has not answered any question, so ask the user
         echo '<tr>';
         echo '<td align="right">Enter State:</td>';
         echo '<td><input type="TEXT" name="state" placeholder="Ex: VA" required/></td>';
@@ -47,14 +55,16 @@ require_once 'db_connection.php';
 
             $q_id = $_POST['question_id'];
             if ($q_id == '1') {
-                // set the state as global so is can be used in SQL below
+                // set the state as global so it can be used in SQL below
                 $_SESSION['state'] = $state;
-                $glb_state = $_SESSION['state'];
+                $_SESSION['q_id'] = 1;
             }
 
             // get first question
             $conn = OpenCon();
-            $sql = "SELECT question FROM questions WHERE question_id='$q_id' AND state='$glb_state'";
+            //$sql = "SELECT question FROM questions WHERE question_id='$q_id' AND state='$glb_state'";
+            $sql = "SELECT question FROM questions WHERE question_id='{$_SESSION['q_id']}' AND state='{$_SESSION['state']}'";
+    
             $result = $conn->query($sql);
             $row = $result->fetch_array();
             $question = $row['question'];  
@@ -76,11 +86,11 @@ require_once 'db_connection.php';
             //echo '<td colspan="2" style = "text-align:center;">';  
             ?>
         
-            <td colspan="2" style = "text-align:center;"><input type="radio" name="q_option" value="no">No
-            <input type="radio" name="q_option" value="yes">Yes</td>
+            <td colspan="2" style = "text-align:center;"><input type="radio" name="q_option" value="no">  No <br> <br>
+            <input type="radio" name="q_option" value="yes">  Yes</td>
 
             <?php
-
+            echo '<input type="hidden" name="state" value='.$_SESSION['state'].'>'; 
             echo '</tr>';
             }
 

@@ -77,7 +77,6 @@ if (isset($_GET["newpwd"])) {
         echo '<p class="signupsuccess">Your password has been reset!</p>';
         
     }
-
 }
 ?>
 </td>

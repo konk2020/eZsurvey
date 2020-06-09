@@ -34,12 +34,19 @@ console_log("Q_ID: ".$_POST['question_id']);
 <table border="0" align="center" cellpadding="5">
 
 <?php
-//if (isset($_POST['submit'])){
 
-    // Get state passed
+
+    // Get state and answer passed
     $state = $_POST['state'];
     $q_option = $_POST['q_option'];
+    
     echo $q_option;
+
+    $next_q = what_is_the_next_question($_SESSION['q_id'], $_SESSION['state'], $q_option);
+    echo $next_q;
+
+
+    // call the function
     
 
     if (!isset($state)) { 
@@ -58,6 +65,9 @@ console_log("Q_ID: ".$_POST['question_id']);
                 // set the state as global so it can be used in SQL below
                 $_SESSION['state'] = $state;
                 $_SESSION['q_id'] = 1;
+            } else {
+                console_log("adding 1 to the Q");
+                $_SESSION['q_id'] += 1;
             }
 
             // get first question
@@ -95,7 +105,7 @@ console_log("Q_ID: ".$_POST['question_id']);
             }
 
      } //else
-   // }
+   
 
 ?>
 

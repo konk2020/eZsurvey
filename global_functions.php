@@ -15,30 +15,20 @@ function console_log($output, $with_script_tags = true) {
 }
 
 
-function check_reshuffle() {
-    // -- returns 1 when all the cards on the deck has been drawn (52 if them)
+function what_is_the_next_question($q_id, $state, $ans) {
+    //returns next question id or message id
     $conn = OpenCon();
-    
-    if (isset($_POST["reset-request-submit"])) {
+    $sql = "SELECT question_id, goto_if_yes, goto_if_no FROM questions WHERE question_id='$q_id' AND state='$state'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_array();
 
-        // check to make sure the email sent over exists in the accouts table
-        $conn = OpenCon();
-        $userEmail = $_POST["email"];
-    
-        $sql = "SELECT * FROM accounts WHERE email='$userEmail' LIMIT 1";
-        $result = $conn->query($sql);
-    
-        $row = $result->fetch_array();
-                    
-        $userID = $row['username'];  
-    
-        if($result->num_rows == 0){
-            header("Location: ../reset-password.php?email=noemailfound");
-            exit(); 
-        }
-    
-//CloseCon($conn);       
-}
+    if ($ans=='yes'){
+        return $row['goto_if_yes']; 
+    } elseif ($ans=='no') {
+        return $row['goto_if_no']; 
+    } else {return 00;}
+                 
+    CloseCon($conn);       
 }
 
 //count the number of cards for a player 

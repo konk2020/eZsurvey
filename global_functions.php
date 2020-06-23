@@ -31,6 +31,41 @@ function what_is_the_next_question($q_id, $state, $ans) {
     CloseCon($conn);       
 }
 
+function what_is_the_state($company_code) {
+    //return the state based on the company_code typed by the user
+    $conn = OpenCon();
+    $sql = "SELECT state FROM company WHERE company_code='$company_code'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_array();
+
+    return $row['state']; 
+                 
+    CloseCon($conn);       
+}
+
+function save_answers($state, $q_id, $ans, $m_id, $uname, $company_code) {
+    //return the state based on the company_code typed by the user
+    $conn = OpenCon();
+
+    $trans_date = null; // tables field is set to datetime, this will auto type stamp when you send a null value
+
+   // $sql = "INSERT INTO answers (state, question_id, answer, timestamp, message_id, name, company_code)
+   // VALUES('$state','$q_id','$ans','$trans_date','$m_id','$uname','$company_code')";
+    $date_time = date("m/d/Y h:m:s");
+
+    console_log("parameters---->".$state." ".$q_id." ".$ans." ".$date_time." ".$m_id." ".$uname." ".$company_code);
+    $sql = "INSERT INTO answers (state, question_id, answer, timestamp, message_id, name, company_id)
+    VALUES('$state', '$q_id', '$ans', '$date_time', '$m_id', '$uname', '$company_code')";
+   
+    $conn->query($sql); 
+ 
+
+    return 1; // 1=success
+                 
+    CloseCon($conn);       
+}
+
+
 //count the number of cards for a player 
 function count_cards($player) {
     // -- checks the number of cards the player has in his hand

@@ -15,6 +15,9 @@ $error = NULL;
      //ini_set('display_errors', 1);
 
 require_once "mail.php";
+require_once 'db_connection.php';
+require_once "app_connection.php";
+
 
   
   $secure_url = app_url().'verify.php';

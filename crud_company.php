@@ -32,7 +32,8 @@
 <html>
 <head>
     <title>Company Information</title>
-    <link rel="stylesheet" type="text/css" href="css/style1.css">
+	<link rel="stylesheet" type="text/css" href="css/style1.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <body>
@@ -92,15 +93,15 @@
 
 
 
-	<form method="post" action="crud_company_process.php">
-		<div class="input-group">
+	<form  method="post" action="crud_company_process.php">
+		<div class="input-group" >
 			<label>Company Code</label>
-            <input type="text" name="company_code" value="<?php echo $company_code; ?>">
+            <input type="text" name="company_code"  value="<?php echo $company_code; ?>">
            
 		</div>
 		<div class="input-group">
 			<label>Company Name</label>
-			<input type="text" name="company_name" value="<?php echo $company_name; ?>">
+			<input type="text" name="company_name"  value="<?php echo $company_name; ?>">
 		</div>
         <div class="input-group">
 			<label>Address</label>

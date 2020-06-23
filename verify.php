@@ -7,6 +7,8 @@
 // Other files called: login.php
 // includes: db_connection.php
 
+require_once 'db_connection.php';
+
 if (isset($_GET['vkey'])){
     // Process Verification
     $vkey = $_GET['vkey'];

@@ -14,7 +14,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
 ?>
 <html>
 <head>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/style1.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -37,7 +37,9 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
             <td colspan="1" style = "text-align:center;"> Reset your password</td> 
         </tr>
         <tr>
-            <td colspan="1" style = "text-align:center;"> Download your survey results</td> 
+            <td colspan="1" style = "text-align:center;" class="click"> 
+            <a href = "answers_export.php">Download your survey results</a>         
+            </td> 
         </tr>
 
     </div>

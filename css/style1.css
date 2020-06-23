@@ -85,3 +85,7 @@ form {
     width: 50%;
     text-align: center;
 }
+
+.click a {
+    display: block;
+  }

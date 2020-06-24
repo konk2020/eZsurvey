@@ -4,7 +4,6 @@
 
 
 <?php 
-    
 	if (isset($_GET['edit'])) {
 		$company_code = $_GET['edit'];
         $update = true;
@@ -23,8 +22,7 @@
             $city = $n['city'];
             $state = $n['state'];
             $zipcode = $n['zipcode'];
-            $logo = $n['logo'];
-        }
+		}
 	}
 ?>
 
@@ -34,7 +32,8 @@
 <html>
 <head>
     <title>Company Information</title>
-    <link rel="stylesheet" type="text/css" href="css/style1.css">
+	<link rel="stylesheet" type="text/css" href="css/style1.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 <body>
@@ -68,7 +67,6 @@
             <th>City</th>
             <th>State</th>
             <th>Zip Code</th>
-            <th>Logo</th>
 			<th colspan="2">Action</th>
 		</tr>
 	</thead>
@@ -82,11 +80,6 @@
             <td><?php echo $row['city']; ?></td>
             <td><?php echo $row['state']; ?></td>
             <td><?php echo $row['zipcode']; ?></td>
-          
-		  <td> <?php header("content-type: image/jpeg"); 
-		  	    echo $a=$row['logo'];
-			    echo base64_decode($a);?>
-		  </td>
 
 			<td>
 				<a href="crud_company.php?edit=<?php echo $row['company_code']; ?>" class="edit_btn" >Edit</a>
@@ -100,15 +93,15 @@
 
 
 
-	<form method="post" action="crud_company_process.php">
-		<div class="input-group">
+	<form  method="post" action="crud_company_process.php">
+		<div class="input-group" >
 			<label>Company Code</label>
-            <input type="text" name="company_code" value="<?php echo $company_code; ?>">
+            <input type="text" name="company_code"  value="<?php echo $company_code; ?>">
            
 		</div>
 		<div class="input-group">
 			<label>Company Name</label>
-			<input type="text" name="company_name" value="<?php echo $company_name; ?>">
+			<input type="text" name="company_name"  value="<?php echo $company_name; ?>">
 		</div>
         <div class="input-group">
 			<label>Address</label>
@@ -129,10 +122,6 @@
         <div class="input-group">
 			<label>Zip Code</label>
 			<input type="text" name="zipcode" value="<?php echo $zipcode; ?>">
-		</div>
-        <div class="input-group">
-			<label>Logo</label>
-			<input type="file" name="logo" value="<?php echo $logo; ?>">
 		</div>
 		<div class="input-group">
 

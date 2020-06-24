@@ -38,7 +38,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
         </tr>
         <tr>
             <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "answers_export.php">Download your survey results</a>         
+            <a href = "export_answers.php">Download your survey results</a>         
             </td> 
         </tr>
 

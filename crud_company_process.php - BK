@@ -12,7 +12,6 @@
     $city = "";
     $state = "";
     $zipcode = "";
-    $logo = "";
     
     //$id = 0;
     
@@ -26,13 +25,12 @@
         $city = $_POST['city'];
         $state = $_POST['state'];
         $zipcode = $_POST['zipcode'];
-        $logo = $_POST['logo'];
 
           // open connection to db
           $mysqli = OpenCon();
 
-          $insert = $mysqli->query("INSERT INTO company (company_code, company_name, address, address2, city, state, zipcode, logo )
-          VALUES('$company_code','$company_name','$address','$address2','$city','$state','$zipcode', '$logo')");
+          $insert = $mysqli->query("INSERT INTO company (company_code, company_name, address, address2, city, state, zipcode )
+          VALUES('$company_code','$company_name','$address','$address2','$city','$state','$zipcode')");
 
           
         if (!$insert) {
@@ -55,12 +53,11 @@
         $city = $_POST['city'];
         $state = $_POST['state'];
         $zipcode = $_POST['zipcode'];
-        $logo = $_POST['logo'];
 
         // open connection to db
         $mysqli = OpenCon();
 
-        $update = $mysqli->query("UPDATE company SET company_name='$company_name', address='$address', address2='$address2', city='$city', state='$state', zipcode='$zipcode', logo='$logo' WHERE company_code='$company_code'");
+        $update = $mysqli->query("UPDATE company SET company_name='$company_name', address='$address', address2='$address2', city='$city', state='$state', zipcode='$zipcode' WHERE company_code='$company_code'");
 
         if (!$update) {
             // if there is an error on the update
@@ -70,7 +67,6 @@
         $_SESSION['message'] = "Company Updated!"; 
 		header('location: crud_company.php');
     }
-
 
 
     if (isset($_GET['del'])) {

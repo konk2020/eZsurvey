@@ -7,6 +7,7 @@
 </head>
 <body>
 <?php  include('header.php'); ?>
+<?php  include('menu.php'); ?>
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -25,6 +26,10 @@
                       <th>Message_id</th>
                       <th>Message</th>
                       <th>Company_id</th>
+                      <th>Time Stamp</th>
+
+                      
+
                       
                     </tr>
                 </thead>
@@ -36,7 +41,7 @@
                     $db = OpenCon();
                     
                     //get records from database
-                    $query = $db->query("select name, answers.state, answers.question_id, question, answer, answers.message_id, message, company_id from answers inner join questions on answers.state=questions.state and
+                    $query = $db->query("select name, answers.state, answers.question_id, question, answer, answers.message_id, message, company_id, timestamp from answers inner join questions on answers.state=questions.state and
                     answers.question_id=questions.question_id LEFT JOIN messages on answers.message_id=messages.message_id and answers.state=messages.state");
                     if($query->num_rows > 0){ 
                         while($row = $query->fetch_assoc()){ ?>                
@@ -49,9 +54,11 @@
                       <td><?php echo $row['message_id']; ?></td>
                       <td><?php echo $row['message']; ?></td>
                       <td><?php echo $row['company_id']; ?></td>
+                      <td><?php echo $row['timestamp']; ?></td>
+
                     </tr>
                     <?php } }else{ ?>
-                    <tr><td colspan="8">No answers found.....</td></tr>
+                    <tr><td colspan="9">No answers found.....</td></tr>
                     <?php } ?>
                 </tbody>
             </table>

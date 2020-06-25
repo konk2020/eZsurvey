@@ -17,6 +17,8 @@
                 <a href="export_answers.php" class="menu_btn">Export Data</a>
 
                 <a href="survey.php" class="menu_btn">Survey</a>
+
+                <a href="crud_accounts.php" class="menu_btn">Accounts</a>
                 
             </td>
 

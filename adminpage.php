@@ -49,6 +49,13 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
             </td> 
         </tr>
 
+        <tr>
+            <td colspan="1" style = "text-align:center;" class="click"> 
+            <a href = "crud_accounts.php">Update user information</a>         
+            </td> 
+        </tr>
+
+
     </div>
 
     <?php include 'footer.php'; ?>

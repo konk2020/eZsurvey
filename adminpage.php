@@ -28,13 +28,20 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
             <td colspan="1" style = "text-align:center;">  <u><h3> Admin Options </h3></u></td> 
         </tr>
         <tr>
-            <td colspan="1" style = "text-align:center;"> Upload your logo</td> 
+            <td colspan="1" style = "text-align:center;" class="click"> 
+            <a href = "crud_company.php">Upload your logo</a>         
+            </td> 
+
         </tr>
         <tr>
-            <td colspan="1" style = "text-align:center;"> Update survey questions</td> 
+            <td colspan="1" style = "text-align:center;" class="click"> 
+            <a href = "crud_questions.php">Update survey questions</a>         
+            </td> 
         </tr>
         <tr>
-            <td colspan="1" style = "text-align:center;"> Reset your password</td> 
+            <td colspan="1" style = "text-align:center;" class="click"> 
+            <a href = "reset-password.php">Reset your password</a>         
+            </td> 
         </tr>
         <tr>
             <td colspan="1" style = "text-align:center;" class="click"> 

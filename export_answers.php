@@ -25,7 +25,7 @@
                       <th>Answer</th>
                       <th>Message_id</th>
                       <th>Message</th>
-                      <th>Company_id</th>
+                      <th>Company Code</th>
                       <th>Time Stamp</th>
 
                       

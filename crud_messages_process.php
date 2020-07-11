@@ -26,7 +26,7 @@
 
           // open connection to db
           $mysqli = OpenCon();
-
+        
           $insert = $mysqli->query("INSERT INTO messages (state, message_id, regulated, message, company_code )
           VALUES('$state','$message_id','$regulated','$message', '$company_code')");
 
@@ -53,7 +53,7 @@
 
         // open connection to db
         $mysqli = OpenCon();
-
+        $message = str_replace("'", "''", "$message");
         $update = $mysqli->query("UPDATE messages SET state='$state', message_id='$message_id', regulated='$regulated', message='$message', company_code='$company_code' WHERE rec_id='$rec_id'");
 
         if (!$update) {

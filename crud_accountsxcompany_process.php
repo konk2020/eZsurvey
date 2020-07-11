@@ -14,7 +14,8 @@
 	$update = false;
 
 	if (isset($_POST['save'])) {
-		$id = $_POST['id'];
+        $username = $_POST['username'];
+		$id = get_username_id($username);
 		$company_code = $_POST['company_code'];
         
 
@@ -40,11 +41,12 @@
     if (isset($_POST['update'])) {
         $id = $_POST['id'];
         $company_code = $_POST['company_code'];
+        $rec_id = $_POST['rec_id'];
 
         // open connection to db
         $mysqli = OpenCon();
 
-        $update = $mysqli->query("UPDATE accountsxcompany SET id='$id' WHERE id='$id' AND company_code='$company_code'");
+        $update = $mysqli->query("UPDATE accountsxcompany SET id='$id' WHERE rec_id='$rec_id'");
 
         if (!$update) {
             // if there is an error on the update
@@ -56,12 +58,12 @@
     }
 
     if (isset($_GET['del'])) {
-        $company_code = $_GET['del'];
+        $rec_id = $_GET['del'];
         
          // open connection to db
          $mysqli = OpenCon();
            
-         $delete = $mysqli->query("DELETE FROM accountsxcompany WHERE id='$id' AND company_code='$company_code'");
+         $delete = $mysqli->query("DELETE FROM accountsxcompany WHERE rec_id='$rec_id'");
 
         if (!$delete) {
             // if there is an error on the delete

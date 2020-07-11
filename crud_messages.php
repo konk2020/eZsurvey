@@ -31,7 +31,7 @@
 		//} else {
 			// query all the company codes
 			$conn = OpenCon();
-			$sql = "SELECT company_code from company";    
+			$sql = "SELECT company_code, company_name from company";    
 			$resultSetComp = $conn->query($sql);
 	//	}
 ?>
@@ -81,7 +81,7 @@
 		<tr>
 			<td><?php echo $row['state']; ?></td>
             <td><?php echo $row['message_id']; ?></td>
-            <td><?php echo $row['regulated']; ?></td>
+            <td><?php if($row['regulated'] == 1) {echo "Yes";} else {echo "No";} ?></td>
             <td><?php echo $row['message']; ?></td>
             <td><?php echo $row['company_code']; ?></td>
 
@@ -182,8 +182,9 @@
 		<?php 
 			echo "<option value='$company_code' selected >".$company_code."</option>";
             while($rows = $resultSetComp->fetch_assoc()) {
+			$company_codeDisplay = $rows["company_code"] . " - " . $rows['company_name'];
 			$company_code = $rows["company_code"];
-			echo "<option value='$company_code'>$company_code</option>";
+			echo "<option value='$company_code'>$company_codeDisplay</option>";
 		}   
         ?>
         </select>

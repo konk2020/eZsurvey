@@ -2,11 +2,11 @@
 <?php  include('crud_accounts_process.php'); ?>
 
 <?php 
-  //  ini_set('display_errors', 1);
+   // ini_set('display_errors', 1);
 	if (isset($_GET['edit'])) {
 		$id = $_GET['edit'];
         $update = true;
-        
+
         $conn = OpenCon();
         $sql = "SELECT * from accounts where id='$id'";    
         $result = $conn->query($sql);
@@ -58,7 +58,7 @@
  		<tr>
 			<th>Username</th>
             <th>Email</th>
-            <th>Verified</th>
+            <th>Email Verified</th>
             <th>Create Date</th>
             <th>Name</th>
             <th>Phone</th>
@@ -71,8 +71,8 @@
 		<tr>
 			<td><?php echo $row['username']; ?></td>
             <td><?php echo $row['email']; ?></td>
-            <td><?php echo $row['verified']; ?></td>
-            <td><?php echo $row['createdate']; ?></td>
+            <td><?php if($row['verified'] == 1) { echo "Yes";} else {echo "No";} ?></td>
+            <td><?php echo date ("m/d/y", strtotime($row['createdate'])); ?></td>
             <td><?php echo $row['name']; ?></td>
             <td><?php echo $row['phone']; ?></td>
             <td><?php echo $row['role']; ?></td>
@@ -93,37 +93,46 @@
 	<form method="post" action="crud_accounts_process.php">
 		<div class="input-group">
 			<label>Username</label>
+            <?php if (isset($_GET['edit'])): ?>
+            <input type="text" name="username" value="<?php echo $username; ?>" disabled>
+            <?php else: ?>
             <input type="text" name="username" value="<?php echo $username; ?>">
+            <?php endif ?>
            
 		</div>
 		<div class="input-group">
 			<label>Email</label>
-			<input type="text" name="email" value="<?php echo $email; ?>">
+			<input type="email" name="email" value="<?php echo $email; ?>">
 		</div>
         <div class="input-group">
-			<label>Verified</label>
-			<input type="text" name="verified" value="<?php echo $verified; ?>">
+			<label>Email Verified</label>
+			<select name="verified">
+			<?php echo "<option value='$verified' selected >".($verified==1?'Yes':'No')."</option>"; ?>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+            </select>
 		</div>
         <div class="input-group">
-			<label>Create Date</label>
-			<input type="text" name="createdate" value="<?php echo $createdate; ?>">
-		</div>
-        <div class="input-group">
-			<label>Name</label>
+			<label>Name </label>
 			<input type="text" name="name" value="<?php echo $name; ?>">
 		</div>
         <div class="input-group">
 			<label>Phone</label>
-			<input type="text" name="phone" value="<?php echo $phone; ?>">
+			<input type="tel" name="phone" value="<?php echo $phone; ?>" placeholder="(000) 000-0000">
 		</div>
         <div class="input-group">
 			<label>Role</label>
-			<input type="text" name="role" value="<?php echo $role; ?>">
+            <select name="role">
+			<?php echo "<option value='$role' selected >".$role."</option>";?>
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+            </select>
 		</div>
     
 		<div class="input-group">
 
-        <?php if ($update == true): ?>
+		<?php if ($update == true): ?>
+			<?php echo "<input type='hidden' name='id' value='$id'>" ?>
             <button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
         <?php else: ?>
             <button class="btn" type="submit" name="save" >Save</button>

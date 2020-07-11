@@ -6,11 +6,15 @@
 // Other files called: login.php
 // includes: header.php, footer.php
 
+include_once 'global_functions.php';
+
 session_start();
 if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     header("Location: login.php");
+    
     die();
 }
+console_log($_SESSION['userLogin']);
 ?>
 <html>
 <head>
@@ -29,7 +33,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
         </tr>
         <tr>
             <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "crud_company.php">Upload your logo</a>         
+            <a href = "logo_upload_form.php">Upload your logo</a>         
             </td> 
 
         </tr>

@@ -39,6 +39,8 @@
             // if there is an error on the insert
             echo $mysqli->error;
         }
+        
+
 
 
         //mysqli_query($db, "INSERT INTO info (name, address) VALUES ('$name', '$address')"); 
@@ -70,6 +72,8 @@
         $_SESSION['message'] = "Company Updated!"; 
 		header('location: crud_company.php');
     }
+
+
 
 
 

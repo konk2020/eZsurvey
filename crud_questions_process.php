@@ -2,7 +2,8 @@
 	session_start();
 //	$db = mysqli_connect('localhost', 'root', '', 'crud');
 
-    include_once 'db_connection.php';
+    //include_once 'db_connection.php';
+include_once 'global_functions.php';
 
 	// initialize variables
 	$state = "";
@@ -23,7 +24,7 @@
         $question_id = $_POST['question_id'];
         $regulated = $_POST['regulated'];
         $question = $_POST['question'];
-        $options = $_POST['options'];
+        $options = "binary";
         $goto_if_yes = $_POST['goto_if_yes'];
         $goto_if_no = $_POST['goto_if_no'];
         $company_code = $_POST['company_code'];
@@ -52,15 +53,16 @@
         $question_id = $_POST['question_id'];
         $regulated = $_POST['regulated'];
         $question = $_POST['question'];
-        $options = $_POST['options'];
+        $options = "binary";
         $goto_if_yes = $_POST['goto_if_yes'];
         $goto_if_no = $_POST['goto_if_no'];
         $company_code = $_POST['company_code'];
-
+        $rec_id = $_POST['rec_id'];
+        
         // open connection to db
         $mysqli = OpenCon();
-
-        $update = $mysqli->query("UPDATE company SET state='$state', question_id='$question_id', regulated='$$regulated', question='$question', options='$options', goto_if_yes='$goto_if_yes', goto_if_no='$goto_if_no', company_code='$company_code' WHERE state='$state' AND question_id='$question_id'");
+        $question = str_replace("'", "''", "$question");
+        $update = $mysqli->query("UPDATE questions SET state='$state', question_id='$question_id', regulated='$regulated', question='$question', options='$options', goto_if_yes='$goto_if_yes', goto_if_no='$goto_if_no', company_code='$company_code' WHERE rec_id='$rec_id'");
 
         if (!$update) {
             // if there is an error on the update
@@ -74,12 +76,12 @@
 
 
     if (isset($_GET['del'])) {
-        $company_code = $_GET['del'];
+        $rec_id = $_GET['del'];
         
          // open connection to db
          $mysqli = OpenCon();
 
-         $delete = $mysqli->query("DELETE FROM questions WHERE state='$state' AND question_id='$question_id'");
+         $delete = $mysqli->query("DELETE FROM questions WHERE rec_id='$rec_id'");
 
         if (!$delete) {
             // if there is an error on the delete

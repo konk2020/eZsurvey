@@ -6,11 +6,11 @@
 
 <?php 
 	if (isset($_GET['edit'])) {
-		$company_code = $_GET['edit'];
+		$rec_id = $_GET['edit'];
         $update = true;
         
         $conn = OpenCon();
-        $sql = "SELECT * from accountsxcompany where company_code='$company_code'";    
+        $sql = "SELECT * from accountsxcompany INNER JOIN accounts ON accountsxcompany.id = accounts.id  where rec_id='$rec_id'";    
         $result = $conn->query($sql);
         //$record = $result->num_rows;
 
@@ -18,8 +18,25 @@
 			$n = $result->fetch_array();
             $id = $n['id'];
 			$company_code = $n['company_code'];
+            $username = $n['username'];
+            $name = $n['name'];
+            $rec_id = $n['rec_id'];
 		}
 	}
+//QUERY FOR ID DROPDOWN
+        $conn = OpenCon();
+        $sql = "SELECT id from accountsxcompany";    
+        $resultSet = $conn->query($sql);
+//QUERY FOR USERNAME DROPDOWN
+        $conn = OpenCon();
+        $sql = "SELECT username, name from accounts";    
+        $resultSetUser = $conn->query($sql);
+// query all the company codes
+        $conn = OpenCon();
+        $sql = "SELECT company_code, company_name from company";     
+        $resultSetComp = $conn->query($sql);
+
+
 ?>
 
 
@@ -46,7 +63,7 @@
 <?php 
 ini_set('display_errors', 1);
         $conn = OpenCon();
-        $sql = "SELECT * from accountsxcompany";    
+        $sql = "SELECT * from accountsxcompany INNER JOIN accounts ON accountsxcompany.id = accounts.id";    
         $result = $conn->query($sql);
 ?>
 
@@ -54,21 +71,24 @@ ini_set('display_errors', 1);
 	<thead>
    
  		<tr>
-            <th>ID</th>
-			<th>Company Code</th>
+            <th>Company Code</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
 		</tr>
 	</thead>
 	
 	<?php while ($row = $result->fetch_array()) { ?>
 		<tr>
-			<td><?php echo $row['id']; ?></td>
-			<td><?php echo $row['company_code']; ?></td>
-
+            <td><?php echo $row['company_code']; ?></td>
+            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['username']; ?></td>
+            <td><?php echo $row['email']; ?></td>
 			<td>
-				<a href="crud_accountsxcompany.php?edit=<?php echo $row['company_code']; ?>" class="edit_btn" >Edit</a>
+				<a href="crud_accountsxcompany.php?edit=<?php echo $row['rec_id']; ?>" class="edit_btn" >Edit</a>
 			</td>
 			<td>
-				<a href="crud_accountsxcompany_process.php?del=<?php echo $row['company_code']; ?>" class="del_btn" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+				<a href="crud_accountsxcompany_process.php?del=<?php echo $row['rec_id']; ?>" class="del_btn" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>
@@ -77,13 +97,42 @@ ini_set('display_errors', 1);
 
 
 	<form method="post" action="crud_accountsxcompany_process.php">
+
 		<div class="input-group">
-			<label>ID</label>
-            <input type="text" name="id" value="<?php echo $id; ?>">
+            <input type="text" name="id" value="<?php echo $id; ?>" hidden>
 		</div>
+        <!--DROPDOWN FOR USERNAME-->
+        <div class="input-group">
+			<label>Username</label>
+            <?php if (isset($_GET['edit'])): ?>
+            <select name="username" disabled>
+            <?php else: ?>
+            <select name="username">
+            <?php endif ?>
+            <?php
+            echo "<option value='$username' selected >".$username." - ".$name."</option>";
+            while($rows = $resultSetUser->fetch_assoc()) {
+            $usernameDisplay = $rows["username"] . " - " . $rows["name"];
+            $username = $rows["username"];
+            echo "<option value='$username'>$usernameDisplay</option>";
+            }    
+            ?>
+            </select>
+        </div>
+        <!--DROPDOWN FOR COMPANY CODE FIELD-->
         <div class="input-group">
 			<label>Company Code</label>
-            <input type="text" name="company_code" value="<?php echo $company_code; ?>">
+            <select name="company_code">
+			<option value="" selected disabled hidden>Choose here</option>
+		<?php 
+			echo "<option value='$company_code' selected >".$company_code."</option>";
+            while($rows = $resultSetComp->fetch_assoc()) {
+			$company_codeDisplay = $rows["company_code"] . " - " . $rows['company_name'];
+			$company_code = $rows["company_code"];
+			echo "<option value='$company_code'>$company_codeDisplay</option>";
+		}   
+        ?>
+        </select>
 		</div>
 		<div class="input-group">
 

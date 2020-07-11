@@ -28,6 +28,7 @@ if (isset($_POST['submit'])){
     if ($resultSet->num_rows !== 0 ){
         // Process Login
         $row = $resultSet->fetch_assoc();
+        $user_id = $row['id'];
         $verified = $row['verified'];
         $email = $row ['email'];
         $date = $row['createdate'];
@@ -38,7 +39,7 @@ if (isset($_POST['submit'])){
             // Continue processing
 
             //echo "Your account has been verified and you have been loged in";
-            $_SESSION['userLogin'] = "Loggedin";
+            $_SESSION['userLogin'] = $user_id;
             header("Location: adminpage.php");
            // exit();
         } else {

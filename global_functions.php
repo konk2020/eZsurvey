@@ -21,7 +21,7 @@ function what_is_the_next_question($q_id, $state, $ans) {
     $sql = "SELECT question_id, goto_if_yes, goto_if_no FROM questions WHERE question_id='$q_id' AND state='$state'";
     $result = $conn->query($sql);
     $row = $result->fetch_array();
-
+ 
     if ($ans=='yes'){
         return $row['goto_if_yes']; 
     } elseif ($ans=='no') {
@@ -39,6 +39,53 @@ function what_is_the_state($company_code) {
     $row = $result->fetch_array();
 
     return $row['state']; 
+                 
+    CloseCon($conn);       
+}
+
+function get_company_code($user_id) {
+    //return the company code based on the user passed 
+    $conn = OpenCon();
+    $sql = "SELECT company_code FROM accountsxcompany WHERE id='$user_id'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_array();
+
+    return $row['company_code']; 
+                 
+    CloseCon($conn);       
+}
+
+function get_username_id($username) {
+    //return the id based on the user passed 
+    $conn = OpenCon();
+    $sql = "SELECT id FROM accounts WHERE username='$username'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_array();
+
+    return $row['id']; 
+                 
+    CloseCon($conn);       
+}
+
+function get_username_name($username) {
+    //return the name based on the user passed 
+    $conn = OpenCon();
+    $sql = "SELECT name FROM accounts WHERE username='$username'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_array();
+
+    return $row['name']; 
+                 
+    CloseCon($conn);       
+}
+
+function update_company_logo($logo_path, $company_code) {
+    //return the company code based o the user passed 
+    $conn = OpenCon();
+    $sql = "UPDATE company set logo = '$logo_path' WHERE company_code='$company_code'";
+    $conn->query($sql); 
+    
+    return 1; // 1=success
                  
     CloseCon($conn);       
 }

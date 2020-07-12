@@ -26,7 +26,7 @@
                       <th>Message_id</th>
                       <th>Message</th>
                       <th>Company Code</th>
-                      <th>Time Stamp</th>
+                      <th>Survey Taken</th>
 
                       
 
@@ -41,7 +41,7 @@
                     $db = OpenCon();
                     
                     //get records from database
-                    $query = $db->query("select name, answers.state, answers.question_id, question, answer, answers.message_id, message, company_id, timestamp from answers inner join questions on answers.state=questions.state and
+                    $query = $db->query("select name, answers.state, answers.question_id, question, answer, answers.message_id, message, company_id, surveytaken from answers inner join questions on answers.state=questions.state and
                     answers.question_id=questions.question_id LEFT JOIN messages on answers.message_id=messages.message_id and answers.state=messages.state");
                     if($query->num_rows > 0){ 
                         while($row = $query->fetch_assoc()){ ?>                
@@ -54,7 +54,7 @@
                       <td><?php echo $row['message_id']; ?></td>
                       <td><?php echo $row['message']; ?></td>
                       <td><?php echo $row['company_id']; ?></td>
-                      <td><?php echo $row['timestamp']; ?></td>
+                      <td><?php echo $row['surveytaken']; ?></td>
 
                     </tr>
                     <?php } }else{ ?>

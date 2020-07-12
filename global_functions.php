@@ -98,11 +98,11 @@ function save_answers($state, $q_id, $ans, $m_id, $uname, $company_code) {
 
    // $sql = "INSERT INTO answers (state, question_id, answer, timestamp, message_id, name, company_code)
    // VALUES('$state','$q_id','$ans','$trans_date','$m_id','$uname','$company_code')";
-    $date_time = date("m/d/Y h:m:s");
+    //$date_time = date("m/d/Y h:m:s");
 
-    console_log("parameters---->".$state." ".$q_id." ".$ans." ".$date_time." ".$m_id." ".$uname." ".$company_code);
-    $sql = "INSERT INTO answers (state, question_id, answer, timestamp, message_id, name, company_id)
-    VALUES('$state', '$q_id', '$ans', '$date_time', '$m_id', '$uname', '$company_code')";
+    console_log("parameters---->".$state." ".$q_id." ".$ans." ".$m_id." ".$uname." ".$company_code);
+    $sql = "INSERT INTO answers (state, question_id, answer, message_id, name, company_id)
+    VALUES('$state', '$q_id', '$ans','$m_id', '$uname', '$company_code')";
    
     $conn->query($sql); 
  

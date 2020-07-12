@@ -30,7 +30,7 @@ console_log("Q_ID: ".$_POST['question_id']);
 
 <body>
 <?php include 'survey_header.php'; ?>
-<form method="POST" action="">
+<form method="post" action="">
 <table>
 
 <?php
@@ -57,7 +57,10 @@ console_log("Q_ID: ".$_POST['question_id']);
     // save answer
     if (isset($company_code) && isset($q_option)) {
         $rtn =  save_answers($_SESSION['state'], $_SESSION['q_id'], $q_option, $_SESSION['m_id'], $_SESSION['uname'], $company_code);
-        console_log('inserting...');
+   //     $rtn =  save_answers('state', '102', 'q_option', 'm_id', 'uname', '$company_code');
+
+        
+        console_log('inserting...'.$rtn);
     }
 
 

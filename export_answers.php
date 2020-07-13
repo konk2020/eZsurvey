@@ -4,6 +4,8 @@
 <head>
     <title>Survey Answers</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--For icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <?php  include('header.php'); ?>
@@ -51,7 +53,10 @@
                       <td><?php echo $row['question_id']; ?></td>
                       <td><?php echo $row['question']; ?></td> 
                       <td><?php echo $row['answer']; ?></td> 
-                      <td><?php echo $row['message_id']; ?></td>
+                      <td><?php if ($row['message_id'] == "PS") 
+                        {echo "<i class='fa fa-thumbs-up' style='color: green;'></i>";} 
+                        if ($row['message_id'] == "FL"){"<i class='fa fa-thumbs-down' style='color: red;'></i>";}
+                          ?></td>
                       <td><?php echo $row['message']; ?></td>
                       <td><?php echo $row['company_id']; ?></td>
                       <td><?php echo $row['surveytaken']; ?></td>

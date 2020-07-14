@@ -12,6 +12,7 @@ if (($_FILES['my_file']['name']!="")){
  $temp_name = $_FILES['my_file']['tmp_name'];
  
  $company_code = get_company_code($_SESSION['userLogin']);
+ //  do an if statement to see if hte variable is set, if not send an error meesage back to the screen. 
  $path_filename_ext = $target_dir.$company_code."_logo.".$ext;
  
 console_log($path_filename_ext);

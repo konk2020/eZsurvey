@@ -12,6 +12,7 @@
         <tr>
             <td colspan="2" style = "text-align:center;">  COVID-19 Survey</td>  
         </tr>
+        </table>
     </div>
 </body>
 </html>

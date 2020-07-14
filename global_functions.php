@@ -44,13 +44,18 @@ function what_is_the_state($company_code) {
 }
 
 function get_company_code($user_id) {
-    //return the company code based on the user passed 
+    //return the company code based on the user passed. If user is not yet assigned to a code then return null.
     $conn = OpenCon();
     $sql = "SELECT company_code FROM accountsxcompany WHERE id='$user_id'";
     $result = $conn->query($sql);
     $row = $result->fetch_array();
 
-    return $row['company_code']; 
+    if ($result->num_rows > 0) {
+        return $row['company_code'];  
+    }   else {
+        //  user name has not yet been assigned to a company code  in table accountsxcompany
+        return null;
+    } 
                  
     CloseCon($conn);       
 }

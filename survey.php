@@ -26,6 +26,7 @@ console_log("Q_ID: ".$_POST['question_id']);
 <html>
 <head>
 <link href="css/style1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -45,7 +46,7 @@ console_log("Q_ID: ".$_POST['question_id']);
 
     $next_q = what_is_the_next_question($_SESSION['q_id'], $_SESSION['state'], $q_option);
    
-    echo "ANS ".$q_option." NXT Q ".$next_q;
+    //echo "ANS ".$q_option." NXT Q ".$next_q;
 
     // we check if numeric to see if it has a message code M1, M2, or anything with a letter. 
     if (!is_numeric($next_q)){
@@ -66,13 +67,13 @@ console_log("Q_ID: ".$_POST['question_id']);
 
     if (!isset($company_code)) { 
         // state is not set, and user has not answered any question, so ask the user
-        echo '<tr>';
-        echo '<td align="right">Enter Company Code:</td>';
-        echo '<td><input type="TEXT" name="company_code" placeholder="Ex: ABC" required/></td>';
+        echo '<tr class="form-group">';
+        echo '<td align="right" class="form-lbl">Enter Company Code:</td>';
+        echo '<td><input type="TEXT" name="company_code" placeholder="Ex: ABC" required class="form-control" style="width: 50%;"></td>';
         echo '</tr>';
-        echo '<tr>';
-        echo '<td align="right">Enter Your Name:</td>';  
-        echo '<td><input type="TEXT" name="uname" placeholder="Ex: James Smith" required/></td>';
+        echo '<tr class="form-group">';
+        echo '<td align="right" class="form-lbl">Enter Your Name:</td>';  
+        echo '<td><input type="TEXT" name="uname" placeholder="Ex: James Smith" required class="form-control" style="width: 70%;"></td>';
         
         // send question #1
         echo '<input type="hidden" name="question_id" value="1">'; 
@@ -132,7 +133,7 @@ console_log("Q_ID: ".$_POST['question_id']);
 ?>
 
 <tr>
-    <td colspan="2" style = "text-align:center;"><input type="SUBMIT"  class="btn" name="submit" value="Next" required/></td>
+    <td colspan="2" style = "text-align:center;"><input type="SUBMIT"  class="btn" name="submit" value="Next" required style="width: 35%;"></td>
 </tr>
 
 </form>
@@ -140,6 +141,8 @@ console_log("Q_ID: ".$_POST['question_id']);
 
 <?php include 'footer.php'; ?>
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

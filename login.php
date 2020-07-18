@@ -58,47 +58,49 @@ if (isset($_POST['submit'])){
 
 <html>
 <head>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-
+<link href="css/style1.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 </head>
 
 <body>
 
 <?php include 'header.php'; ?>
-
 <div class="container">    
 <form method="POST" action="">
-<table border="0" align="center" cellpadding="5">
+<fieldset class="form-group">
+    <input type="text" name="u" required class="form-control" placeholder="Username" style="width: 50%; margin: 0 auto;"/>
+</fieldset>
+<fieldset class="form-group" style="margin: 5px auto;">
+<div class="input-group" style="width: 50%; margin: 0 auto;">
+    <input type="password" name="p" required class="form-control" placeholder="Password" data-toggle="password"/>
+<div class="input-group-append">
+    <div class="input-group-text"><i class="fa fa-eye"></i></div>
+</div>
+</div>
+</fieldset>
+<fieldset class="form-group" style="text-align: center;">
+<br><input type="SUBMIT"  class="submit form-control btn btn-primary" name="submit" value="Login" required style="width: 50%;"/>
+     <fieldset ><a href='reset-password.php'>Forgot your password?</a> <a href='registration.php'>Register</a></fieldset>
+</fieldset>
+</form>
 
-<tr>
-<td colspan="2" style = "text-align:center; color:red;">
+   
+    
 <?php
 if (isset($_GET["newpwd"])) {
     if ($_GET["newpwd"]== "passwordupdated") {
-        echo '<p class="signupsuccess">Your password has been reset!</p>';
+        echo '<p class="signupsuccess" style = "text-align:center; color:red;">Your password has been reset!</p>';
         
     }
 }
 ?>
-</td>
-</tr>
 
-<tr>
-    <td align="right">Username:</td>
-    <td><input type="TEXT" name="u" required/></td>
-</tr>
-<tr>
-    <td align="right">Password:</td>
-    <td><input type="PASSWORD" name="p" required/></td>
-</tr>
 
-<tr>
-    <td colspan="2" style = "text-align:center;"><input type="SUBMIT"  class="submit" name="submit" value="Login" required/></form></td>
-    <td colspan="2" style = "text-align:center;">
-        </tr>
 
-</tr>
 
+
+<table>
 <tr>
     <td colspan="2" style = "text-align:center; color:red;">
     
@@ -106,15 +108,16 @@ if (isset($_GET["newpwd"])) {
        
   </td>
 </tr>
+</table>
 
-<tr>
-<td colspan="2" style = "text-align:center;">
-<a href='reset-password.php'>Forgot your password?</a> <a href='registration.php'>Register</a>
-</td>
-</tr>
+
 
 <?php include 'footer.php'; ?>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>!function(a){a(function(){a('[data-toggle="password"]').each(function(){var b = a(this); var c = a(this).parent().find(".input-group-text"); c.css("cursor", "pointer").addClass("input-password-hide"); c.on("click", function(){if (c.hasClass("input-password-hide")){c.removeClass("input-password-hide").addClass("input-password-show"); c.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash"); b.attr("type", "text")} else{c.removeClass("input-password-show").addClass("input-password-hide"); c.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye"); b.attr("type", "password")}})})})}(window.jQuery);</script>
 </body>
 </html>

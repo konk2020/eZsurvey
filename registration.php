@@ -114,40 +114,34 @@ if (isset($_POST['submit'])){
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
 <?php include 'header.php'; ?>
-<div class="container">    
+    
+<div class="container">  
+
 <form method="POST" action="">
-<table border="0" align="center" cellpadding="5">
-
-<tr>
-<td colspan="2" style = "text-align:center;"> 
-    Create your Admin account for eZSurvey <br> <br> <a href="login.php"> Already have an account?</a>
-    <br> <br>
-</td>
-   
-</tr>
-
-<tr>
-    <td align="right">Username:</td>
-    <td><input type="TEXT" name="u" placeholder="2 char minimum..." required/></td>
-</tr>
-<tr>
-    <td align="right">Password:</td>
-    <td><input type="PASSWORD" name="p" placeholder="5 char minimum..." required/></td>
-</tr>
-<tr>
-    <td align="right">Repeat Password:</td>
-    <td><input type="PASSWORD" name="p2" placeholder="repeat password..." required/></td>
-</tr>
-<tr>
-    <td align="right">Email Address:</td>
-    <td><input type="EMAIL" name="e" placeholder="name@mydomanin.com..." required/></td>
-</tr>
-<tr>
-<td colspan="2" style = "text-align:center; color:red;">
+    <h3 class="crud_title"><b><i>Create your Admin account for eZsurvey</i></b></h3><div style="text-align: center;"><a href="login.php"> Already have an account?</a></div><br>
+<fieldset class="form-group">
+    <label class="form-lbl">Username</label>
+    <input type="TEXT" name="u" placeholder="2 char minimum..." required class="form-control"/>
+</fieldset>
+<fieldset class="form-group">
+    <label class="form-lbl">Password</label>
+    <input type="TEXT" name="p" placeholder="5 char minimum..." required class="form-control"/>
+</fieldset>
+<fieldset class="form-group">
+    <label class="form-lbl">Repeat Password</label>
+    <input type="TEXT" name="p2" placeholder="Repeat Password" required class="form-control"/>
+</fieldset>
+<fieldset class="form-group">
+    <label class="form-lbl">Email Address</label>
+    <input type="TEXT" name="e" placeholder="name@mydomain.com" required class="form-control"/>
+</fieldset>
+<input type="SUBMIT"  class="submit btn btn-primary" name="submit" value="Register" required/>
+    </form>
 <?php
 // tell the user the username is already in used
 if (isset($_GET["username"])) {
@@ -172,20 +166,15 @@ if (isset($_GET["username"])) {
 }
 ?>
 
-</td>
-</tr>
-
-<tr>
-    <td colspan="2" style = "text-align:center;"><input type="SUBMIT"  class="submit" name="submit" value="Register" required/></td>
-</tr>
-
 <?php include 'footer.php'; ?>
 
-</form>
+
 </div>
 
 
 </center>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

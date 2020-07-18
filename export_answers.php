@@ -10,15 +10,16 @@
 <body>
 <?php  include('header.php'); ?>
 <?php  include('menu.php'); ?>
+<h2 class="crud_title"><b><i>Export Answers</i></b></h2><br>
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
             Survey Answers
-            <a href="export_data.php" class="btn btn-success pull-right">Export Answers</a>
+            <a href="export_data.php" class="btn btn-primary pull-right" style="width:20%;">Export Answers</a>
         </div>
         <div class="panel-body">
-            <table class="table table-bordered">
-                <thead>
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
                     <tr>
                       <th>Name</th>
                       <th>State</th>
@@ -44,7 +45,7 @@
                     
                     //get records from database
                     $query = $db->query("select name, answers.state, answers.question_id, question, answer, answers.message_id, message, company_id, surveytaken from answers inner join questions on answers.state=questions.state and
-                    answers.question_id=questions.question_id LEFT JOIN messages on answers.message_id=messages.message_id and answers.state=messages.state");
+                    answers.question_id=questions.question_id LEFT JOIN messages on answers.message_id=messages.message_id and answers.state=messages.state order by name,surveytaken");
                     if($query->num_rows > 0){ 
                         while($row = $query->fetch_assoc()){ ?>                
                     <tr>

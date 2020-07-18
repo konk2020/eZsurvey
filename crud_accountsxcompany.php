@@ -66,15 +66,17 @@ ini_set('display_errors', 1);
         $sql = "SELECT * from accountsxcompany INNER JOIN accounts ON accountsxcompany.id = accounts.id";    
         $result = $conn->query($sql);
 ?>
-
-<table class="tiny">
-	<thead>
+<h2 class="crud_title"><b><i>Company X User</i></b></h2>
+<table class="tiny table table-striped">
+	<thead class="thead-dark">
    
  		<tr>
             <th>Company Code</th>
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
+            <th></th>
+            <th></th>
 		</tr>
 	</thead>
 	
@@ -85,10 +87,10 @@ ini_set('display_errors', 1);
             <td><?php echo $row['username']; ?></td>
             <td><?php echo $row['email']; ?></td>
 			<td>
-				<a href="crud_accountsxcompany.php?edit=<?php echo $row['rec_id']; ?>" class="edit_btn" >Edit</a>
+				<a href="crud_accountsxcompany.php?edit=<?php echo $row['rec_id']; ?>" class="edit_btn btn btn-success" >Edit</a>
 			</td>
 			<td>
-				<a href="crud_accountsxcompany_process.php?del=<?php echo $row['rec_id']; ?>" class="del_btn" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+				<a href="crud_accountsxcompany_process.php?del=<?php echo $row['rec_id']; ?>" class="del_btn btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>
@@ -98,19 +100,17 @@ ini_set('display_errors', 1);
 
 	<form method="post" action="crud_accountsxcompany_process.php">
 
-		<div class="input-group">
-            <input type="text" name="id" value="<?php echo $id; ?>" hidden>
-		</div>
         <!--DROPDOWN FOR USERNAME-->
-        <div class="input-group">
-			<label>Username</label>
+        <fieldset class="form-group">
+			<label class="form-lbl">Username</label>
             <?php if (isset($_GET['edit'])): ?>
-            <select name="username" disabled>
+            <select name="username" disabled class="form-control">
             <?php else: ?>
-            <select name="username">
+            <select name="username" class="form-control">
             <?php endif ?>
             <?php
-            echo "<option value='$username' selected >".$username." - ".$name."</option>";
+            if (isset($_GET['edit'])) {echo "<option value='$username' selected >".$username." - ".$name."</option>";}
+            else { echo "<option selected>--Select--</option>";}
             while($rows = $resultSetUser->fetch_assoc()) {
             $usernameDisplay = $rows["username"] . " - " . $rows["name"];
             $username = $rows["username"];
@@ -118,14 +118,14 @@ ini_set('display_errors', 1);
             }    
             ?>
             </select>
-        </div>
+        </fieldset>
         <!--DROPDOWN FOR COMPANY CODE FIELD-->
-        <div class="input-group">
-			<label>Company Code</label>
-            <select name="company_code">
-			<option value="" selected disabled hidden>Choose here</option>
+        <fieldset class="form-group">
+			<label class="form-lbl">Company Code</label>
+            <select name="company_code" class="form-control">
 		<?php 
-			echo "<option value='$company_code' selected >".$company_code."</option>";
+			if (isset($_GET['edit'])) {echo "<option value='$company_code' selected >".$company_code."</option>";}
+            else {echo "<option selected>--Select--</option>";}
             while($rows = $resultSetComp->fetch_assoc()) {
 			$company_codeDisplay = $rows["company_code"] . " - " . $rows['company_name'];
 			$company_code = $rows["company_code"];
@@ -133,13 +133,13 @@ ini_set('display_errors', 1);
 		}   
         ?>
         </select>
-		</div>
+		</fieldset>
 		<div class="input-group">
 
         <?php if ($update == true): ?>
-            <button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
+            <button class="btn btn-success" type="submit" name="update"><b>Update</b></button>
         <?php else: ?>
-            <button class="btn" type="submit" name="save" >Save</button>
+            <button class="btn btn-success" type="submit" name="save" ><b>Save</b></button>
         <?php endif ?>
 
 		</div>

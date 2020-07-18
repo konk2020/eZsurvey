@@ -19,6 +19,7 @@ console_log($_SESSION['userLogin']);
 <html>
 <head>
 <link href="css/style1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -26,42 +27,20 @@ console_log($_SESSION['userLogin']);
 
 
     <div class="container">    
-        <table border="0" align="center" cellpadding="5">
        
-        <tr>
-            <td colspan="1" style = "text-align:center;">  <u><h3> Admin Options </h3></u></td> 
-        </tr>
-        <tr>
-            <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "logo_upload_form.php">Upload your logo</a>         
-            </td> 
-
-        </tr>
-        <tr>
-            <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "crud_questions.php">Update survey questions</a>         
-            </td> 
-        </tr>
-        <tr>
-            <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "reset-password.php">Reset your password</a>         
-            </td> 
-        </tr>
-        <tr>
-            <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "export_answers.php">Download your survey results</a>         
-            </td> 
-        </tr>
-
-        <tr>
-            <td colspan="1" style = "text-align:center;" class="click"> 
-            <a href = "crud_accounts.php">Update user information</a>         
-            </td> 
-        </tr>
+       <h3 class="crud_title"><b><i> Admin Options</b></i></h3> <br></td>  
+    <div style="text-align: center; margin-bottom: 1%;"><a href = "logo_upload_form.php" class="btn btn-primary">Upload your logo</a></div>          
+        <div style="text-align: center; margin-bottom: 1%;"><a href = "crud_questions.php" class="btn btn-primary">Update survey questions</a></div>      
+        <div style="text-align: center; margin-bottom: 1%;"><a href = "reset-password.php" class="btn btn-primary">Reset your password</a></div>       
+        <div style="text-align: center; margin-bottom: 1%;"><a href = "export_answers.php" class="btn btn-primary">Download your survey results</a></div>
+        <div style="text-align: center;"><a href = "crud_accounts.php" class="btn btn-primary">Update user information</a></div>  
 
 
     </div>
 
     <?php include 'footer.php'; ?>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

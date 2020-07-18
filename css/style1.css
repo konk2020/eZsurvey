@@ -1,8 +1,17 @@
-body {
+2body {
     font-size: 19px;
 }
+.crud_title {
+    text-align: center;
+}
 table{
-    width: 50%;
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+table.tiny{
+    width: 30%;
     margin: 30px auto;
     border-collapse: collapse;
     text-align: left;
@@ -27,54 +36,51 @@ form {
     border: 1px solid #bbbbbb; 
     border-radius: 5px;
 }
-
-.input-group {
-    margin: 10px 0px 10px 0px;
-}
-.input-group label {
-    display: block;
-    text-align: left;
-    margin: 3px;
-}
-.input-group input {
-    height: 30px;
-    width: 93%;
-    padding: 5px 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid gray;
-}
 .btn {
     padding: 10px;
     font-size: 15px;
-    color: white;
-    background: #5F9EA0;
-    border: none;
+    width: 100%;
+    border: 2px solid #28a745;
+    color: #28a745;
     border-radius: 5px;
+    background: none;
 }
 .edit_btn {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 2px solid #28a745;
+    color: #28a745;
+    border-radius: 5px;
+    background: none;
+}
+/* Removes underline when the cursor is hovered over edit_btn*/
+.edit_btn:hover {
     text-decoration: none;
-    padding: 2px 5px;
-    background: #2E8B57;
-    color: white;
-    border-radius: 3px;
+}
+.del_btn {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    border-radius: 5px;
+    background: none;
 }
 
 .menu_btn {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 2px solid #28a745;
+    color: #28a745;
+    border-radius: 5px;
+    background: none;
+    border-bottom: none;
+}
+/* Removes underline when the cursor is hovered over menu_btn*/
+.menu_btn:hover{ 
     text-decoration: none;
-    padding: 2px 5px;
-    background: #2E8B57;
-    color: white;
-    border-radius: 3px;
 }
 
-.del_btn {
-    text-decoration: none;
-    padding: 2px 5px;
-    color: white;
-    border-radius: 3px;
-    background: #800000;
-}
+
 .msg {
     margin: 30px auto; 
     padding: 10px; 
@@ -86,6 +92,4 @@ form {
     text-align: center;
 }
 
-.click a {
-    display: block;
-  }
+

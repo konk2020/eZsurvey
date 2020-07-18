@@ -43,6 +43,7 @@
 <head>
     <title>Message Information</title>
     <link rel="stylesheet" type="text/css" href="css/style1.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <body>
@@ -64,9 +65,10 @@
         $result = $conn->query($sql);
        
 ?>
-
-<table>
-	<thead>
+<h2 class="crud_title"><b><i>Messages</i></b></h2>
+<div class="container">
+<table class="table table-striped">
+	<thead class="thead-dark">
    
  		<tr>
 			<th>State</th>
@@ -74,6 +76,8 @@
             <th>Regulated</th>
             <th>Message</th>
             <th>Company Code</th>
+            <th></th>
+            <th></th>
 		</tr>
 	</thead>
 	
@@ -94,15 +98,16 @@
 		</tr>
 	<?php } ?>
 </table>
+</div>
 
 
 
 	<form method="post" action="crud_messages_process.php">
         <!--DROPDOWN FOR ALL THE STATES-->
-		<div class="input-group">
-			<label>State</label>
-			<select name="state" value="<?php echo $state; ?>">
-			   <?php echo "<option value='$state' selected >".$state."</option>"; ?>
+		<fieldset class="form-group">
+			<label class="form-lbl">State</label>
+			<select name="state" value="<?php echo $state; ?>" class="form-control">
+			   <?php if (isset($_GET['edit'])) {echo "<option value='$state' selected >".$state."</option>";} else{ echo "<option selected>--Select--</option>";} ?>
 	           <option value="AL">Alabama</option>
 	           <option value="AK">Alaska</option>
 	           <option value="AZ">Arizona</option>
@@ -156,31 +161,31 @@
 	           <option value="WY">Wyoming</option>
             </select>
            
-		</div>
-		<div class="input-group">
-			<label>Message ID</label>
-			<input type="text" name="message_id" value="<?php echo $message_id; ?>">
-		</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<label class="form-lbl">Message ID</label>
+			<input type="text" name="message_id" value="<?php echo $message_id; ?>" class="form-control">
+		</fieldset>
         <!--DROPDOWN FOR REGULATED FIELD-->
-        <div class="input-group">
-			<label>Regulated</label>
-            <select name="regulated">
-			<?php echo "<option value='$regulated' selected >".($regulated==1?'Yes':'No')."</option>"; ?>
+        <fieldset class="form-group">
+			<label class="form-lbl">Regulated</label>
+            <select name="regulated" class="form-control">
+			<?php if (isset($_GET['edit'])) {echo "<option value='$regulated' selected >".($regulated==1?'Yes':'No')."</option>";} else{ echo "<option selected>--Select--</option>";} ?>
             <option value="0">No</option>
             <option value="1">Yes</option>
             </select>
-		</div>
-        <div class="input-group">
-			<label>Message</label>
-			<input type="text" name="message" value="<?php echo $message; ?>">
-		</div>
+		</fieldset>
+        <fieldset class="form-group">
+			<label class="form-lbl">Message</label>
+			<input type="text" name="message" value="<?php echo $message; ?>" class="form-control">
+		</fieldset>
         <!--DROPDOWN FOR COMPANY CODE FIELD-->
-        <div class="input-group">
-			<label>Company Code</label>
-            <select name="company_code">
+        <fieldset class="form-group">
+			<label class="form-lbl">Company Code</label>
+            <select name="company_code" class="form-control">
 			<option value="" selected disabled hidden>Choose here</option>
 		<?php 
-			echo "<option value='$company_code' selected >".$company_code."</option>";
+            if (isset($_GET['edit'])) {echo "<option value='$company_code' selected >".$company_code."</option>";} else{ echo "<option selected>--Select--</option>";} 
             while($rows = $resultSetComp->fetch_assoc()) {
 			$company_codeDisplay = $rows["company_code"] . " - " . $rows['company_name'];
 			$company_code = $rows["company_code"];
@@ -188,19 +193,22 @@
 		}   
         ?>
         </select>
-		</div>
+		</fieldset>
     
-		<div class="input-group">
+		<fieldset class="form-group">
 
 		<?php if ($update == true): ?>
 			<?php echo "<input type='hidden' name='rec_id' value='$rec_id'>" ?>
-            <button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
+            <button class="btn btn-succes" type="submit" name="update" >Update</button>
         <?php else: ?>
-            <button class="btn" type="submit" name="save" >Save</button>
+            <button class="btn btn-success" type="submit" name="save" >Save</button>
         <?php endif ?>
 
-		</div>
+		</fieldset>
 	</form>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
 <?php  include('footer.php'); ?>

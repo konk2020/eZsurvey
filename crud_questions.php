@@ -39,6 +39,7 @@
 <head>
     <title>Company Questions</title>
     <link rel="stylesheet" type="text/css" href="css/style1.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <body>
@@ -61,17 +62,21 @@
        
 ?>
 
-<table>
-	<thead>
+<h2 class="crud_title"><i><b>Questions</b></i></h2>
+<div class="container">
+<table class="table table-striped">
+	<thead class="thead-dark">
    
  		<tr>
-			<th>State</th>
-            <th>Question #</th>
+			<th scope="col">State</th>
+            <th>Question#</th>
             <th>Regulated</th>
             <th>Question</th>
-            <th>Go to if yes</th>
-            <th>Go to if no</th>
+            <th>Go to if 'yes'</th>
+            <th>Go to if 'no'</th>
 			<th>Company Code</th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	
@@ -86,23 +91,24 @@
             <td><?php echo $row['company_code']; ?></td>
 
 			<td>
-				<a href="crud_questions.php?edit=<?php echo $row['rec_id']; ?>" class="edit_btn" >Edit</a>
+				<a href="crud_questions.php?edit=<?php echo $row['rec_id']; ?>" class="edit_btn btn btn-success" >Edit</a>
 			</td>
 			<td>
-				<a href="crud_questions_process.php?del=<?php echo $row['rec_id']; ?>" class="del_btn" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
+				<a href="crud_questions_process.php?del=<?php echo $row['rec_id']; ?>" class="del_btn btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>
 </table>
+</div>
 
 
 
 	<form method="post" action="crud_questions_process.php">
 		        <!--DROPDOWN FOR ALL THE STATES-->
-		<div class="input-group">
-			<label>State</label>
-			<select name="state" value="<?php echo $state; ?>">
-			   <?php echo "<option value='$state' selected >".$state."</option>"; ?>
+		<fieldset class="form-group">
+            <label class="form-lbl">State</label>
+			<select name="state" value="<?php echo $state; ?>" placeholder="State" class="form-control">
+			   <?php if (isset($_GET['edit'])) {echo "<option value='$state' selected >".$state."</option>";} else{ echo "<option selected>--Select--</option>";} ?>
 	           <option value="AL">Alabama</option>
 	           <option value="AK">Alaska</option>
 	           <option value="AZ">Arizona</option>
@@ -156,38 +162,38 @@
 	           <option value="WY">Wyoming</option>
             </select>
            
-		</div>
-		<div class="input-group">
-			<label>Question #</label>
-			<input type="text" name="question_id" value="<?php echo $question_id; ?>">
-		</div>
-        <div class="input-group">
-			<label>Regulated</label>
-            <select name="regulated">
-			<?php echo "<option value='$regulated' selected >".($regulated==1?'Yes':'No')."</option>"; ?>
+		</fieldset>
+		<fieldset class="form-group">
+            <label class="form-lbl">Question ID</label>
+			<input type="text" name="question_id" value="<?php echo $question_id; ?>" class="form-control">
+		</fieldset>
+        <fieldset class="form-group">
+			<label class="form-lbl">Regulated</label>
+            <select name="regulated" class="form-control">
+			<?php if (isset($_GET['edit'])) {echo "<option value='$regulated' selected >".($regulated==1?'Yes':'No')."</option>";} else{ echo "<option selected>--Select--</option>";} ?>
             <option value="0">No</option>
             <option value="1">Yes</option>
             </select>
-		</div>
-        <div class="input-group">
-			<label>Question</label>
-			<input type="text" name="question" value="<?php echo $question; ?>">
-		</div>
-        <div class="input-group">
-			<label>Go to question/message if yes</label>
-			<input type="text" name="goto_if_yes" value="<?php echo $goto_if_yes; ?>">
-		</div>
-         <div class="input-group">
-			<label>Go to question/message if no</label>
-            <input type="text" name="goto_if_no" value="<?php echo $goto_if_no; ?>">
-		</div>
+		</fieldset>
+        <fieldset class="form-group">
+            <label class="form-lbl">Question</label>
+			<input type="text" name="question" value="<?php echo $question; ?>" class="form-control">
+		</fieldset>
+        <fieldset class="form-group">
+            <label class="form-lbl">Go to question/message if user answers 'yes'</label>
+			<input type="text" name="goto_if_yes" value="<?php echo $goto_if_yes; ?>" class="form-control">
+		</fieldset>
+        <fieldset class="form-group">
+            <label class="form-lbl"> Go to question/message if user answers 'no'</label>
+            <input type="text" name="goto_if_no" value="<?php echo $goto_if_no; ?>" class="form-control">
+		</fieldset>
         <!--DROPDOWN FOR COMPANY CODE FIELD-->
-        <div class="input-group">
-			<label>Company Code</label>
-            <select name="company_code">
-			<option value="" selected disabled hidden>Choose here</option>
+        <fieldset class="form-group">
+			<label class="form-lbl">Company Code</label>
+            <select name="company_code" class="form-control">
 		    <?php 
-			echo "<option value='$company_code' selected >".$company_code."</option>";
+			if (isset($_GET['edit'])) { echo "<option value='$company_code' selected >".$company_code."</option>";}
+            else { echo "<option selected>--Select--</option>";}
             while($rows = $resultSetComp->fetch_assoc()) {
 			$company_codeDisplay = $rows["company_code"] . " - " . $rows['company_name'];
 			$company_code = $rows["company_code"];
@@ -195,17 +201,17 @@
 		    }   
             ?>
         </select>
-		</div>
-		<div class="input-group">
+		</fieldset>
+		<fieldset class="form-group">
 
         <?php if ($update == true): ?>
             <?php echo "<input type='hidden' name='rec_id' value='$rec_id'>" ?>
-            <button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
+            <button class="btn btn-success" type="submit" name="update"><b>Update</b></button>
         <?php else: ?>
-            <button class="btn" type="submit" name="save" >Save</button>
+            <button class="btn btn-success" type="submit" name="save" ><b>Save</b></button>
         <?php endif ?>
 
-		</div>
+		</fieldset>
 	</form>
     <?php 
 
@@ -217,8 +223,9 @@
 <!--Messages table under the form-->
 <h2 style="text-align: center;">Messages</h2>
 <p style="text-align: center;">Use this table as a reference for messages for fields <b>'Go to question/message if yes'</b> and <b>'Go to question/message if no'</b></p>
-<table>
-	<thead>
+<div class="container">
+<table class="table table-striped">
+	<thead class="thead-dark">
    
  		<tr>
 			<th>State</th>
@@ -239,6 +246,10 @@
 		</tr>
 	<?php } ?>
 </table>
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<?php  include('footer.php'); ?>
 </body>
 </html>
-<?php  include('footer.php'); ?>

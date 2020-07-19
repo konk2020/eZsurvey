@@ -1,3 +1,4 @@
+
 2body {
     font-size: 19px;
 }
@@ -36,15 +37,10 @@ form {
     border: 1px solid #bbbbbb; 
     border-radius: 5px;
 }
-.btn {
-    padding: 10px;
-    font-size: 15px;
-    width: 100%;
-    border: 2px solid #28a745;
-    color: #28a745;
-    border-radius: 5px;
-    background: none;
+input{
+    margin: 0 auto;
 }
+
 .edit_btn {
     padding: 5px 10px;
     font-size: 15px;
@@ -65,22 +61,6 @@ form {
     border-radius: 5px;
     background: none;
 }
-
-.menu_btn {
-    padding: 5px 10px;
-    font-size: 15px;
-    border: 2px solid #28a745;
-    color: #28a745;
-    border-radius: 5px;
-    background: none;
-    border-bottom: none;
-}
-/* Removes underline when the cursor is hovered over menu_btn*/
-.menu_btn:hover{ 
-    text-decoration: none;
-}
-
-
 .msg {
     margin: 30px auto; 
     padding: 10px; 

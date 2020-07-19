@@ -12,21 +12,21 @@
 
             <td style="text-align:center;">
 
-                <a href="adminpage.php" class="menu_btn btn-success">Admin</a>
+                <a href="adminpage.php" class="btn btn-outline-primary">Admin</a>
                 
-                <a href="crud_company.php" class="menu_btn btn-success">Company</a>
+                <a href="crud_company.php" class="btn btn-outline-primary">Company</a>
                 
-				<a href="crud_accountsxcompany.php" class="menu_btn btn-success">Company X User</a>
+				<a href="crud_accountsxcompany.php" class="btn btn-outline-primary">Company X User</a>
   
-  				<a href="crud_questions.php" class="menu_btn btn-success">Questions</a>
+  				<a href="crud_questions.php" class="btn btn-outline-primary">Questions</a>
   
-                <a href="crud_messages.php" class="menu_btn btn-success">Messages</a>
+                <a href="crud_messages.php" class="btn btn-outline-primary">Messages</a>
                 
-                <a href="export_answers.php" class="menu_btn btn-success">Export Data</a>
+                <a href="export_answers.php" class="btn btn-outline-primary">Export Data</a>
                 
-                <a href="crud_accounts.php" class="menu_btn btn-success">Accounts</a>
+                <a href="crud_accounts.php" class="btn btn-outline-primary">Accounts</a>
                 
-                <a href="survey.php" class="menu_btn btn-success">Survey</a>
+                <a href="survey.php" class="btn btn-outline-primary">Survey</a>
                 
                   
             </td>

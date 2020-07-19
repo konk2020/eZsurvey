@@ -17,6 +17,7 @@
 			$username = $n['username'];
             $email= $n['email'];
             $verified = $n['verified'];
+            $status = $n['status'];
             $createdate = $n['createdate'];
             $name = $n['name'];
             $phone = $n['phone'];
@@ -61,6 +62,7 @@
 			<th>Username</th>
             <th>Email</th>
             <th>Email Verified</th>
+            <th>Account Status</th>
             <th>Create Date</th>
             <th>Name</th>
             <th>Phone</th>
@@ -74,6 +76,7 @@
 			<td><?php echo $row['username']; ?></td>
             <td><?php echo $row['email']; ?></td>
             <td><?php if($row['verified'] == 1) { echo "Yes";} else {echo "No";} ?></td>
+            <td><?php if($row['status'] == 1) { echo "Enabled";} else {echo "Disabled";} ?></td>
             <td><?php echo date ("m/d/y", strtotime($row['createdate'])); ?></td>
             <td><?php echo $row['name']; ?></td>
             <td><?php echo $row['phone']; ?></td>
@@ -96,7 +99,7 @@
 		<fieldset class="form-group">
 			<label class="form-lbl">Username</label>
             <?php if (isset($_GET['edit'])): ?>
-            <input type="text" name="username" value="<?php echo $username; ?>" disabled class="form-control">
+            <input type="text" name="username" value="<?php echo $username; ?>"  readonly="readonly" class="form-control">
             <?php else: ?>
             <input type="text" name="username" value="<?php echo $username; ?>" class="form-control">
             <?php endif ?>
@@ -112,6 +115,14 @@
 			<?php if (isset($_GET['edit'])) {echo "<option value='verified' selected >".($verified==1?'Yes':'No')."</option>";} else{echo "<option selected>--Select--</option>";} ?>
             <option value="0">No</option>
             <option value="1">Yes</option>
+            </select>
+		</fieldset>
+        <fieldset class="form-group">
+			<label class="form-lbl">Account Status</label>
+			<select name="status" class="form-control">
+            <?php if (isset($_GET['edit'])) {echo "<option value='status' selected >".($status==1?'Enabled':'Disabled')."</option>";} else{echo "<option selected>--Select--</option>";} ?>
+            <option value="0">Disabled</option>
+            <option value="1">Enabled</option>
             </select>
 		</fieldset>
         <fieldset class="form-group">
@@ -134,6 +145,7 @@
 		<fieldset class="form-group">
 
         <?php if ($update == true): ?>
+            <?php echo "<input type='hidden' name='id' value='$id'>" ?>
             <button class="btn btn-success" type="submit" name="update" >Update</button>
         <?php else: ?>
             <button class="btn btn-success" type="submit" name="save" >Save</button>
